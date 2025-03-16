@@ -759,69 +759,79 @@ class _HomePageState extends State<HomePage> {
                         itemCount: monthlyTransactions.length,
                         itemBuilder: (ctx, index) {
                           final tx = monthlyTransactions[index];
-                          return Card(
-                            margin: EdgeInsets.only(bottom: 10),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              side: BorderSide(color: Colors.grey.shade200),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(4),
-                              child: ListTile(
-                                leading: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: tx.isExpense 
-                                        ? Colors.red.withOpacity(0.2) 
-                                        : Colors.green.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      tx.isExpense ? Icons.arrow_downward : Icons.arrow_upward,
-                                      color: tx.isExpense ? Colors.red : Colors.green,
-                                    ),
-                                  ),
+                          return Column(
+                            children: [
+                                                                    Container(
+                                                                      decoration: BoxDecoration(
+                                                                        color: Color(0XFFF7F2FA),
+                                                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+                                                                      ),
+                                                                      child: IconButton(
+                                                                                                              icon: Icon(Icons.delete, size: 20),
+                                                                                                              color: Colors.red,
+                                                                                                              onPressed: () => _deleteTransaction(tx.id),
+                                                                                                            ),
+                                                                    ),
+                              Card(
+                                margin: EdgeInsets.only(bottom: 10),
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  side: BorderSide(color: Colors.grey.shade200),
                                 ),
-                                title: Text(
-                                  tx.title,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  DateFormat('dd MMMM yyyy').format(tx.date),
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                trailing: Container(
-                                  width: 100,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        '${tx.isExpense ? "-" : "+"} ${_formatCurrency(tx.amount)}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
+                                  child: ListTile(
+                                    leading: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: tx.isExpense 
+                                            ? Colors.red.withOpacity(0.2) 
+                                            : Colors.green.withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          tx.isExpense ? Icons.arrow_downward : Icons.arrow_upward,
                                           color: tx.isExpense ? Colors.red : Colors.green,
                                         ),
                                       ),
-                                      IconButton(
-                                        icon: Icon(Icons.delete, size: 20),
-                                        color: Colors.grey[400],
-                                        onPressed: () => _deleteTransaction(tx.id),
+                                    ),
+                                    title: Text(
+                                      tx.title,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
                                       ),
-                                    ],
+                                    ),
+                                    subtitle: Text(
+                                      DateFormat('dd MMMM yyyy').format(tx.date),
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    trailing: Container(
+                                      width: 120,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            '${tx.isExpense ? "-" : "+"} ${_formatCurrency(tx.amount)}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              color: tx.isExpense ? Colors.red : Colors.green,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           );
                         },
                       );
