@@ -434,10 +434,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        toolbarHeight: 80,
         title: Row(
           children: [
             Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.green.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
@@ -473,14 +474,14 @@ class _HomePageState extends State<HomePage> {
           if (months.length > 1)
             Container(
               height: 60,
-              margin: EdgeInsets.only(top: 8),
+              margin: EdgeInsets.only(top: 20, left: 5),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: months.length,
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 itemBuilder: (ctx, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: const EdgeInsets.only(right: 20),
                     child: InkWell(
                       onTap: () {
                         setState(() {
@@ -498,7 +499,7 @@ class _HomePageState extends State<HomePage> {
                           color: _selectedMonthIndex == index 
                             ? Colors.green 
                             : Colors.grey[200],
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           boxShadow: _selectedMonthIndex == index 
                             ? [BoxShadow(
                                 color: Colors.green.withOpacity(0.3),
@@ -527,6 +528,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(16),
             child: Container(
+              margin: EdgeInsets.only(top: 10),
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -534,7 +536,7 @@ class _HomePageState extends State<HomePage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.green.withOpacity(0.3),
@@ -560,7 +562,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white.withOpacity(0.9),
                           ),
                         ),
-                        Icon(Icons.account_balance, color: Colors.white.withOpacity(0.9)),
+                        Icon(Icons.account_balance_wallet, color: Colors.white.withOpacity(0.9)),
                       ],
                     ),
                     SizedBox(height: 15),
@@ -718,7 +720,7 @@ class _HomePageState extends State<HomePage> {
                             Icon(
                               Icons.receipt_long,
                               size: 70,
-                              color: Colors.grey[300],
+                              color: Colors.green,
                             ),
                             SizedBox(height: 20),
                             Text(
